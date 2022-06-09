@@ -50,6 +50,8 @@ namespace Xna {
 				tan1 * amount +
 				v1;
 		}
+
+		return result;
 	}
 
 	double MathHelper::Lerp(double v1, double v2, double amount) {

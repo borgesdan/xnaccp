@@ -6,7 +6,7 @@
 namespace Xna {
 
 	class MathHelper {
-		static constexpr double LOG10E = 0.434294481903251827651;
+	public:
 		static constexpr double LOG10E = 0.434294481903251827651;
 		static constexpr double PI = 3.14159265358979323846;
 		static constexpr double PI_OVER_2 = 1.57079632679489661923;

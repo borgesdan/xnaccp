@@ -18,9 +18,6 @@
     <ClCompile Include="Xna++.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Point.hpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,12 +27,27 @@
     <ClCompile Include="MathHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MathHelper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

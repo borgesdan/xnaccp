@@ -4,7 +4,7 @@
 #include <cstdint>
 
 namespace Xna {
-	
+
 	class Vector2;
 
 	class Point {
