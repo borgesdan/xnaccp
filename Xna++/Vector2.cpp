@@ -120,15 +120,15 @@ namespace Xna {
 
 	Vector2 Vector2::Max(Vector2 const& v1, Vector2 const& v2) {
 		return Vector2(
-			v1.X > v2.X ? v1.X : v2.X,
-			v1.Y > v2.Y ? v1.Y : v2.Y
+			MathHelper::Max(v1.X, v2.X),
+			MathHelper::Max(v1.Y, v2.Y)
 		);
 	}
 
 	Vector2 Vector2::Min(Vector2 const& v1, Vector2 const& v2) {
 		return Vector2(
-			v1.X < v2.X ? v1.X : v2.X,
-			v1.Y < v2.Y ? v1.Y : v2.Y
+			MathHelper::Min(v1.X, v2.X),
+			MathHelper::Min(v1.Y, v2.Y)
 		);
 	}
 

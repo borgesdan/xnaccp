@@ -1,13 +1,196 @@
+#include <cmath>
+#include "Matrix.hpp"
 #include "Vector3.hpp"
+#include "Vector2.hpp"
+#include "Quaternion.hpp"
+#include "MathHelper.hpp"
 
 namespace Xna {
 
 	Vector3::Vector3() {}
 	Vector3::Vector3(double x, double y, double z) :
 		X(x), Y(y), Z(z) {}
+	Vector3::Vector3(double value) :
+		X(value), Y(value), Z(value) {}
+	Vector3::Vector3(Vector2 value, double z) :
+		X(value.X), Y(value.Y), Z(z) {}
+
+	const Vector3 Zero = Vector3(0.0, 0.0, 0.0);
+	const Vector3 One = Vector3(1.0, 1.0, 1.0);
+	const Vector3 UnitX = Vector3(1.0, 0.0, 0.0);
+	const Vector3 UnitY = Vector3(0.0, 1.0, 0.0);
+	const Vector3 UnitZ = Vector3(0.0, 0.0, 1.0);
+	const Vector3 Up = Vector3(0.0, 1.0, 0.0);
+	const Vector3 Down = Vector3(0.0, -1.0, 0.0);
+	const Vector3 Right = Vector3(1.0, 0.0, 0.0);
+	const Vector3 Left = Vector3(-1.0, 0.0, 0.0);
+	const Vector3 Forward = Vector3(0.0, 0.0, -1.0);
+	const Vector3 Backward = Vector3(0.0, 0.0, 1.0);
 
 	Vector3 operator* (Vector3 v1, Vector3 v2s) {
 		return Vector3();
 	}
 
+	Vector3 Vector3::Add(Vector3 const& v1, Vector3 const& v2) {
+		return Vector3(v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
+	}
+
+	Vector3 Vector3::Subtract(Vector3 const& v1, Vector3 const& v2) {
+		return Vector3(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
+	}
+
+	Vector3 Vector3::Multiply(Vector3 const& v1, Vector3 const& v2) {
+		return Vector3(v1.X * v2.X, v1.Y * v2.Y, v1.Z * v2.Z);
+	}
+
+	Vector3 Vector3::Multiply(Vector3 const& v1, double d) {
+		return Vector3(v1.X * d, v1.Y * d, v1.Z * d);
+	}
+
+	Vector3 Vector3::Divide(Vector3 const& v1, Vector3 const& v2) {
+		double x = v1.X != 0 ? v1.X / v2.X : 0;
+		double y = v2.Y != 0 ? v1.Y / v2.Y : 0;
+		double z = v2.Z != 0 ? v1.Z / v2.Z : 0;
+
+		return Vector3(x, y, z);
+	}
+
+	Vector3 Vector3::Divide(Vector3 const& v1, double d) {
+		return d == 0 ? Vector3() : Vector3(v1.X / d, v1.Y / d, v1.Z / d);
+	}
+
+	Vector3 Vector3::Barycentric(Vector3 const& v1, Vector3 const& v2, Vector3 const& v3, double amount1, double amount2) {
+		return Vector3(
+			MathHelper::Barycentric(v1.X, v2.X, v3.X, amount1, amount2),
+			MathHelper::Barycentric(v1.Y, v2.Y, v3.Y, amount1, amount2),
+			MathHelper::Barycentric(v1.Z, v2.Z, v3.Z, amount1, amount2)
+		);
+	}
+
+	Vector3 Vector3::CatmullRom(Vector3 const& v1, Vector3 const& v2, Vector3 const& v3, Vector3 const& v4, double amount) {
+		return Vector3(
+			MathHelper::CatmullRom(v1.X, v2.X, v3.X, v4.X, amount),
+			MathHelper::CatmullRom(v1.Y, v2.Y, v3.Y, v4.Y, amount),
+			MathHelper::CatmullRom(v1.Z, v2.Z, v3.Z, v4.Z, amount)
+		);
+	}
+
+	Vector3 Vector3::Ceiling(Vector3 const& v) {
+		return Vector3(
+			ceil(v.X),
+			ceil(v.Y),
+			ceil(v.Z)
+		);
+	}
+
+	Vector3 Vector3::Clamp(Vector3 const& v, Vector3 const& min, Vector3 const& max) {
+		return Vector3(
+			MathHelper::Clamp(v.X, min.X, max.X),
+			MathHelper::Clamp(v.Y, min.Y, max.Y),
+			MathHelper::Clamp(v.Z, min.Z, max.Z));
+	}
+
+	Vector3 Vector3::Cross(Vector3 const& v1, Vector3 const& v2) {
+		double x = v1.Y * v2.Z - v2.Y * v1.Z;
+		double y = -(v1.X * v2.Z - v2.X * v1.Z);
+		double z = v1.X * v2.Y - v2.X * v1.Y;
+
+		return Vector3(x, y, z);
+	}
+
+	double Vector3::Distance(Vector3 const& v1, Vector3 const& v2) {
+		return sqrt(DistanceSquared(v1, v2));
+	}
+
+	double Vector3::DistanceSquared(Vector3 const& v1, Vector3 const& v2) {
+		return  (v1.X - v2.X) * (v1.X - v2.X) +
+			(v1.Y - v2.Y) * (v1.Y - v2.Y) +
+			(v1.Z - v2.Z) * (v1.Z - v2.Z);
+	}
+
+	double Vector3::Dot(Vector3 const& v1, Vector3 v2) {
+		return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
+	}
+
+	Vector3 Vector3::Floor(Vector3 const& v) {
+		return Vector3(floor(v.X), floor(v.Y), floor(v.Z));
+	}
+
+	Vector3 Vector3::Hermite(Vector3 const& v1, Vector3 const& tan1, Vector3 const& v2, Vector3 tan2, double amount) {
+		return Vector3(
+			MathHelper::Hermite(v1.X, tan1.X, v2.X, tan2.X, amount),
+			MathHelper::Hermite(v1.Y, tan1.Y, v2.Y, tan2.Y, amount),
+			MathHelper::Hermite(v1.Z, tan1.Z, v2.Z, tan2.Z, amount)
+		);
+	}
+
+	Vector3 Vector3::Lerp(Vector3 const& v1, Vector3 const& v2, double amount) {
+		return Vector3(
+			MathHelper::Lerp(v1.X, v2.X, amount),
+			MathHelper::Lerp(v1.Y, v2.Y, amount),
+			MathHelper::Lerp(v1.Z, v2.Z, amount)
+		);
+	}
+
+	Vector3 Vector3::LerpPrecise(Vector3 const& v1, Vector3 v2, double amount) {
+		return Vector3(
+			MathHelper::LerpPrecise(v1.X, v2.X, amount),
+			MathHelper::LerpPrecise(v1.Y, v2.Y, amount),
+			MathHelper::LerpPrecise(v1.Z, v2.Z, amount)
+		);
+	}
+
+	Vector3 Vector3::Max(Vector3 const& v1, Vector3 const& v2) {
+		return Vector3(
+			MathHelper::Max(v1.X, v2.X),
+			MathHelper::Max(v1.Y, v2.Y),
+			MathHelper::Max(v1.Z, v2.Z));
+	}
+
+	Vector3 Vector3::Min(Vector3 const& v1, Vector3 const& v2) {
+		return Vector3(
+			MathHelper::Min(v1.X, v2.X),
+			MathHelper::Min(v1.Y, v2.Y),
+			MathHelper::Min(v1.Z, v2.Z));
+	}
+
+	Vector3 Vector3::Negate(Vector3 const& v) {
+		return Vector3(-v.X, -v.Y, -v.Z);
+	}
+
+	Vector3 Vector3::Normalize(Vector3 const& v) {
+		double factor = 1.0 / sqrt((v.X * v.X) + (v.Y * v.Y) + (v.Z * v.Z));
+
+		double x = v.X * factor;
+		double y = v.Y * factor;
+		double z = v.Z * factor;
+
+		return Vector3(x, y, z);
+	}
+
+	Vector3 Vector3::Reflect(Vector3 const& v, Vector3 const& normal) {
+		float dotProduct = ((v.X * normal.X) + (v.Y * normal.Y)) + (v.Z * normal.Z);
+
+		return Vector3(
+			v.X - (2.0f * normal.X) * dotProduct,
+			v.Y - (2.0f * normal.Y) * dotProduct,
+			v.Z - (2.0f * normal.Z) * dotProduct
+		);
+	}
+
+	Vector3 Vector3::Round(Vector3 const& v) {
+		return Vector3(
+			round(v.X),
+			round(v.Y),
+			round(v.Z)
+		);
+	}
+
+	Vector3 Vector3::SmoothStep(Vector3 const& v1, Vector3 const& v2, double amount) {
+		return Vector3(
+			MathHelper::SmoothStep(v1.X, v2.X, amount),
+			MathHelper::SmoothStep(v1.Y, v2.Y, amount),
+			MathHelper::SmoothStep(v1.Z, v2.Z, amount)
+		);
+	}
 }

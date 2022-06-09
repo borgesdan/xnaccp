@@ -1,0 +1,6 @@
+As funções "Divide" em C# seguem esse padrão
+    float factor = 1 / divider;
+    result.X = value1.X * factor;
+    result.Y = value1.Y * factor;
+    result.Z = value1.Z * factor;
+Considerar multiplicar ao invés de dividir então
