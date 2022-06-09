@@ -27,8 +27,8 @@ namespace Xna {
 		friend Point operator* (int32_t, Point);
 		friend Point operator/ (Point, Point);
 		friend Point operator/ (Point, int32_t);
-		friend Point operator== (Point, Point);
-		friend Point operator!= (Point, Point);
+		friend bool operator== (Point, Point);
+		friend bool operator!= (Point, Point);
 
 		static Point Add(Point const&, Point const&);
 		static Point Subtract(Point const&, Point const&);

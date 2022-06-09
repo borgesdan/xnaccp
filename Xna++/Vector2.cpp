@@ -348,11 +348,11 @@ namespace Xna {
 		return Vector2::Divide(v, d);
 	}
 
-	Vector2 operator== (Vector2 v1, Vector2 v2) {
+	bool operator== (Vector2 v1, Vector2 v2) {
 		return v1.Equals(v2);
 	}	
 	
-	Vector2 operator!= (Vector2 v1, Vector2 v2) {
+	bool operator!= (Vector2 v1, Vector2 v2) {
 		return !v1.Equals(v2);
 	}
 }

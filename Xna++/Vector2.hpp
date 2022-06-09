@@ -34,8 +34,8 @@ namespace Xna {
 		friend Vector2 operator* (double, Vector2);
 		friend Vector2 operator/ (Vector2, Vector2);
 		friend Vector2 operator/ (Vector2, double);
-		friend Vector2 operator== (Vector2, Vector2);
-		friend Vector2 operator!= (Vector2, Vector2);
+		friend bool operator== (Vector2, Vector2);
+		friend bool operator!= (Vector2, Vector2);
 
 		static Vector2 Add(Vector2 const& v1, Vector2 const& v2);
 		static Vector2 Subtract(Vector2 const& v1, Vector2 const& v2);

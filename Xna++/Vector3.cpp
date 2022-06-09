@@ -380,11 +380,11 @@ namespace Xna {
 		return Vector3::Divide(v, d);
 	}
 
-	Vector3 operator== (Vector3 v1, Vector3 v2) {
+	bool operator== (Vector3 v1, Vector3 v2) {
 		return v1.Equals(v2);
 	}
 
-	Vector3 operator!= (Vector3 v1, Vector3 v2) {
+	bool operator!= (Vector3 v1, Vector3 v2) {
 		return !v1.Equals(v2);
 	}
 }

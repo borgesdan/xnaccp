@@ -88,11 +88,11 @@ namespace Xna {
 		return Point::Divide(p, v);
 	}
 
-	Point operator== (Point p1, Point p2) {
+	bool operator== (Point p1, Point p2) {
 		return p1.Equals(p2);
 	}
 
-	Point operator!= (Point p1, Point p2) {
+	bool operator!= (Point p1, Point p2) {
 		return !p1.Equals(p2);
 	}
 }
