@@ -63,7 +63,7 @@ namespace Xna {
 		static Vector2 Round(Vector2 const& v);
 		static Vector2 SmoothStep(Vector2 const& v1, Vector2 const& v2, double amount);
 
-		static Vector2 Transform(Vector2 const& positions, Matrix const& m);
+		static Vector2 Transform(Vector2 const& position, Matrix const& m);
 		static Vector2 Transform(Vector2 const& v, Quaternion const& q);
 
 		/*

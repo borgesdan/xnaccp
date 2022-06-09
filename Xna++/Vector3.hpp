@@ -1,6 +1,8 @@
 #ifndef _VECTOR3_H_
 #define _VECTOR3_H_
 
+#include <vector>
+
 namespace Xna {
 
 	class Vector2;
@@ -68,7 +70,7 @@ namespace Xna {
 		static Vector3 Round(Vector3 const& v);
 		static Vector3 SmoothStep(Vector3 const& v1, Vector3 const& v2, double amount);
 
-		static Vector3 Transform(Vector3 const& positions, Matrix const& m);
+		static Vector3 Transform(Vector3 const& position, Matrix const& m);
 		static Vector3 Transform(Vector3 const& v, Quaternion const& q);
 
 		static bool Transform(std::vector<Vector3> const& source, size_t sourceIndex,
@@ -92,7 +94,7 @@ namespace Xna {
 		double LengthSquared() const;
 		void Normalize();
 		void Round();
-		void Deconstruct(double& x, double& y) const;
+		void Deconstruct(double& x, double& y, double& z) const;
 		bool Equals(Vector3 other) const;
 	};
 
